@@ -1,15 +1,15 @@
 package ua.nure.kp;
 
 import java.time.LocalDate;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class Employee {
     private String name;
     private double salary;
     private LocalDate hireDay;
-
-    public double getSalary() {
-        return salary;
-    }
 
     public void setSalary(double salary) {
         if (salary <= 0) {
@@ -19,19 +19,5 @@ public class Employee {
         this.salary = salary;
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public LocalDate getHireDay() {
-        return hireDay;
-    }
-
-    public void setHireDay(LocalDate hireDay) {
-        this.hireDay = hireDay;
-    }
 }
