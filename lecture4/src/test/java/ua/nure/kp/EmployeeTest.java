@@ -1,9 +1,9 @@
 package ua.nure.kp;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 
 class EmployeeTest {
 
@@ -12,19 +12,11 @@ class EmployeeTest {
         Employee employee = new Employee();
         employee.setSalary(10);
 
-        // expect exception
-        assertThrows(
-            IllegalArgumentException.class,
-//            new Executable() {
-//                @Override
-//                public void execute() throws Throwable {
-//                    employee.setSalary(-10);
-//                }
-//            }
-            () -> employee.setSalary(-10)
-        );
+        assertThatThrownBy(() -> employee.setSalary(-10))
+            .isInstanceOf(IllegalArgumentException.class)
+            .hasMessage("negative salary");
 
-        assertEquals(10, employee.getSalary());
+        assertThat(employee.getSalary()).isEqualTo(10);
     }
 
 }
