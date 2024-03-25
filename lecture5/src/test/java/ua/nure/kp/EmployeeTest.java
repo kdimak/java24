@@ -29,11 +29,16 @@ class EmployeeTest {
 
         employee.saveToFile("employee.txt");
 
-        try {
-            assertThat(Path.of("employee.txt")).exists();
-        } finally {
-            Files.delete(Path.of("employee.txt"));
-        }
+        assertThat(Path.of("employee.txt")).exists();
+    }
+
+    @Test
+    public void throwsExceptionIfFailsToSaveToFile() {
+        Employee employee = new Employee();
+        employee.setName("Mary");
+
+        assertThatThrownBy(() -> employee.saveToFile("/as132/employee.txt"))
+            .isInstanceOf(IOException.class);
     }
 
 }

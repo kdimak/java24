@@ -1,5 +1,6 @@
 package ua.nure.kp;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
@@ -23,11 +24,27 @@ public class Employee {
         this.salary = salary;
     }
 
-    public void saveToFile(String filePath) {
+//    public void saveToFile(String filePath) throws EmployeePersistenceException {
+    public void saveToFile(String filePath) throws IOException {
+//        try {
+//            Files.writeString(Path.of(filePath), toString());
+//        } catch (Exception e) {
+//            //TODO use logger when its configuration is done
+////            log.error("Failed to save an employee to {} due to exception: {}", filePath, e.getMessage(), e);
+//            System.err.printf(
+//                "Failed to save an employee to %s\n",
+//                filePath
+//            );
+////            e.printStackTrace();
+//
+//            throw new EmployeePersistenceException("Failed to save an employee to " + filePath);
+//        }
+
         try {
             Files.writeString(Path.of(filePath), toString());
-        } catch (Exception e) {
-            log.info("Failed to save an employee to {}", filePath);
+        } catch (IOException e) {
+            log.error("rwrewr");
+            throw e;
         }
 
         log.info("Saved employee to file");
